@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Båtspel')
 
 
-boat = pygame.image.load(r'C:\Users\Eddin\Desktop\Python\gymnasiearbete2d.png')
+boat = pygame.image.load(r'images\gymnasiearbete2d.png')
 
 run = True
 while run:
