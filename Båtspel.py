@@ -38,6 +38,11 @@ class player():
         self.rect.x += dx
         self.rect.y += dy
 
+        if self.rect.bottom > screen_height:
+            self.rect.bottom = screen_height
+            dy = 0
+
+
 
         #rita båten
         screen.blit(self.image, self.rect)
