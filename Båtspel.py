@@ -42,6 +42,14 @@ class player():
             self.rect.bottom = screen_height
             dy = 0
 
+        if self.rect.right > screen_width:
+            self.rect.right = screen_width
+
+        if self.rect.left < 0:
+            self.rect.left = 0
+
+        if self.rect.top < 0:
+            self.rect.top = 0
 
 
         #rita båten
