@@ -11,6 +11,28 @@ pygame.display.set_caption('Båtspel')
 
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
 
+class obstacle():
+
+    def __init__(self, x, y):
+        kamel = pygame.image.load(r'images\hari-nandakumar-5U132F-itpg-unsplash.jpg')
+        self.image = pygame.transform.scale(kamel, (30, 59))
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def update(self):
+            # ändring
+        dx = 0
+        dy = 5
+
+        self.rect.x += dx
+        self.rect.y += dy
+
+        screen.blit(self.image, self.rect)
+
+obstacle = obstacle(80, 80)
+
+obstacle.update()
 
 class player():
 
@@ -20,6 +42,7 @@ class player():
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
     def update(self):
         #ändring
         dx = 0
@@ -61,8 +84,11 @@ run = True
 while run:
 
     screen.blit(background, (0, 0))
+    obstacle.update()
 
     player.update()
+
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
