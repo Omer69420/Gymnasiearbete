@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import *
 pygame.init()
 
 screen_width = 700
@@ -11,7 +10,7 @@ pygame.display.set_caption('Båtspel')
 
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
 
-class obstacle():
+class Obstacle():
 
     def __init__(self, x, y):
         kamel = pygame.image.load(r'images\hari-nandakumar-5U132F-itpg-unsplash.jpg')
@@ -20,8 +19,8 @@ class obstacle():
         self.rect.x = x
         self.rect.y = y
 
+    # ändring
     def update(self):
-            # ändring
         dx = 0
         dy = 5
 
@@ -30,11 +29,11 @@ class obstacle():
 
         screen.blit(self.image, self.rect)
 
-obstacle = obstacle(80, 80)
+Obstacle = Obstacle(80, 80)
 
-obstacle.update()
+Obstacle.update()
 
-class player():
+class Player():
 
     def __init__(self, x, y):
         boat = pygame.image.load(r'images\gymnasiearbete2d.png')
@@ -43,11 +42,12 @@ class player():
         self.rect.x = x
         self.rect.y = y
 
+    # ändring
+    # get keypresses
     def update(self):
-        #ändring
         dx = 0
         dy = 0
-        #get keypresses
+
         key = pygame.key.get_pressed()
         if key[pygame.K_UP]:
             dy -= 7
@@ -63,7 +63,6 @@ class player():
 
         if self.rect.bottom > screen_height:
             self.rect.bottom = screen_height
-            dy = 0
 
         if self.rect.right > screen_width:
             self.rect.right = screen_width
@@ -78,15 +77,15 @@ class player():
         #rita båten
         screen.blit(self.image, self.rect)
 
-player = player(100, 100)
+Player = Player(100, 100)
 
 run = True
 while run:
 
     screen.blit(background, (0, 0))
-    obstacle.update()
+    Obstacle.update()
 
-    player.update()
+    Player.update()
 
 
 
