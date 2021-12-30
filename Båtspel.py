@@ -27,13 +27,13 @@ class player():
         #get keypresses
         key = pygame.key.get_pressed()
         if key[pygame.K_UP]:
-            dy -= 5
+            dy -= 3
         if key[pygame.K_DOWN]:
-            dy += 5
+            dy += 3
         if key[pygame.K_LEFT]:
-            dx -= 5
+            dx -= 3
         if key[pygame.K_RIGHT]:
-            dx += 5
+            dx += 3
 
         self.rect.x += dx
         self.rect.y += dy
