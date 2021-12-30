@@ -36,8 +36,8 @@ Obstacle.update()
 class Player():
 
     def __init__(self, x, y):
-        boat = pygame.image.load(r'images\gymnasiearbete2d.png')
-        self.image = pygame.transform.scale(boat, (80, 130))
+        boat = pygame.image.load(r'images\Pixelart_boat.png')
+        self.image = pygame.transform.scale(boat, (170, 170))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
