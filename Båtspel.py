@@ -12,33 +12,34 @@ background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x10
 
 class Obstacle():
 
-    def __init__(self, x, y):
+    def __init__(Kam, x, y):
         kamel = pygame.image.load(r'images\hari-nandakumar-5U132F-itpg-unsplash.jpg')
-        self.image = pygame.transform.scale(kamel, (30, 59))
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        Kam.image = pygame.transform.scale(kamel, (30, 59))
+        Kam.rect = Kam.image.get_rect()
+        Kam.rect.x = x
+        Kam.rect.y = y
 
     # ändring
-    def update(self):
+    def update(Kam):
         dx = 0
         dy = 5
 
-        self.rect.x += dx
-        self.rect.y += dy
+        Kam.rect.x += dx
+        Kam.rect.y += dy
 
-        screen.blit(self.image, self.rect)
+        screen.blit(Kam.image, Kam.rect)
 
 Obstacle = Obstacle(80, 80)
 
 Obstacle.update()
 
 class Player():
-
     def __init__(self, x, y):
         boat = pygame.image.load(r'images\Pixelart_boat.png')
         self.image = pygame.transform.scale(boat, (170, 170))
         self.rect = self.image.get_rect()
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
         self.rect.x = x
         self.rect.y = y
 
@@ -76,6 +77,7 @@ class Player():
 
         #rita båten
         screen.blit(self.image, self.rect)
+
 
 Player = Player(100, 100)
 
