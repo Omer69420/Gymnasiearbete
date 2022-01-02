@@ -1,4 +1,5 @@
 import pygame
+import random
 pygame.init()
 
 screen_width = 700
@@ -6,6 +7,8 @@ screen_height = 700
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Båtspel')
+number = random.randint(0,700)
+
 
 
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
@@ -13,11 +16,12 @@ background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x10
 class Obstacle():
 
     def __init__(Kam, x, y):
-        kamel = pygame.image.load(r'images\hari-nandakumar-5U132F-itpg-unsplash.jpg')
-        Kam.image = pygame.transform.scale(kamel, (30, 59))
+        kamel = pygame.image.load(r'images/gymnasiearbete2d.png')
+        Kam.image = pygame.transform.scale(kamel, (40, 40))
         Kam.rect = Kam.image.get_rect()
         Kam.rect.x = x
         Kam.rect.y = y
+
 
     # ändring
     def update(Kam):
@@ -27,7 +31,20 @@ class Obstacle():
         Kam.rect.x += dx
         Kam.rect.y += dy
 
+        number = random.randint(0, 700)
+
+        if Kam.rect.top > 700:
+            Kam.rect.top = 0
+
+
+
+        #if Kam.rect.top == 0:
+            #Kam.rect.right = number
+
+
+
         screen.blit(Kam.image, Kam.rect)
+        print(number)
 
 Obstacle = Obstacle(80, 80)
 
@@ -35,8 +52,8 @@ Obstacle.update()
 
 class Player():
     def __init__(self, x, y):
-        boat = pygame.image.load(r'images\Pixelart_boat.png')
-        self.image = pygame.transform.scale(boat, (170, 170))
+        boat = pygame.image.load(r'images/Pixelart_boat.png')
+        self.image = pygame.transform.scale(boat, (140, 200))
         self.rect = self.image.get_rect()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
