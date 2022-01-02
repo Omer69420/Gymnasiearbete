@@ -38,8 +38,8 @@ class Obstacle():
 
 
 
-        #if Kam.rect.top == 0:
-            #Kam.rect.right = number
+        if Kam.rect.top == 0:
+            Kam.rect.right = number
 
 
 
