@@ -1,13 +1,20 @@
 import pygame
 import random
+import math
 pygame.init()
 
 screen_width = 700
 screen_height = 700
-
+clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Båtspel')
 number = random.randint(0,700)
+
+x1 = 400
+x2 = 80
+y1 = 100
+y2 = 80
+
 
 
 
@@ -22,11 +29,10 @@ class Obstacle():
         Kam.rect.x = x
         Kam.rect.y = y
 
-
     # ändring
     def update(Kam):
         dx = 0
-        dy = 5
+        dy = 2
 
         Kam.rect.x += dx
         Kam.rect.y += dy
@@ -36,17 +42,15 @@ class Obstacle():
         if Kam.rect.top > 700:
             Kam.rect.top = 0
 
-
-
         if Kam.rect.top == 0:
             Kam.rect.right = number
 
 
 
         screen.blit(Kam.image, Kam.rect)
-        print(number)
+        #print(number)
 
-Obstacle = Obstacle(80, 80)
+Obstacle = Obstacle(x2, y2)
 
 Obstacle.update()
 
@@ -91,21 +95,37 @@ class Player():
         if self.rect.top < 0:
             self.rect.top = 0
 
-
         #rita båten
         screen.blit(self.image, self.rect)
 
 
-Player = Player(100, 100)
+Player = Player(x1, y1)
 
 run = True
 while run:
+
+    # Setting the framerate to 60fps
+    clock.tick(60)
+
+
+    # Checking if player is colliding
+    # with platform or not using the
+    # colliderect() method.
+    # It will return a boolean value
+    collide = pygame.Rect.colliderect(Player.rect, Obstacle.rect)
+
+    # If the objects are colliding
+    # then changing the y coordinate
+    if collide:
+        Obstacle.rect.bottom = Player.rect.top
+        pygame.quit()
+
+    # Updating the display surface
 
     screen.blit(background, (0, 0))
     Obstacle.update()
 
     Player.update()
-
 
 
     for event in pygame.event.get():
