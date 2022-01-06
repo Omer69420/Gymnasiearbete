@@ -9,6 +9,13 @@ screen_height = 700
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 
+background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
+x1 = 400
+y1 = 100
+x2 = 80
+y2 = 80
+
+
 class Button():
     def __init__(kebab, x, y, image):
         kebab.image = image
@@ -33,12 +40,6 @@ class Button():
         screen.blit(kebab.image, kebab.rect)
 
         return action
-
-background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
-x1 = 400
-y1 = 100
-x2 = 80
-y2 = 80
 
 class Obstacle():
         def __init__(Kam, x, y):
