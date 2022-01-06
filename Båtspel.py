@@ -42,8 +42,8 @@ y2 = 80
 
 class Obstacle():
         def __init__(Kam, x, y):
-            kamel = pygame.image.load(r'images/gymnasiearbete2d.png')
-            Kam.image = pygame.transform.scale(kamel, (40, 40))
+            kamel = pygame.image.load(r'images/pixelart_logs_2.png')
+            Kam.image = pygame.transform.scale(kamel, (40, 70))
             Kam.rect = Kam.image.get_rect()
             Kam.rect.x = x
             Kam.rect.y = y
