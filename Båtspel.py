@@ -9,8 +9,30 @@ screen_height = 700
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 
+class Button():
+    def __init__(kebab, x, y, image):
+        kebab.image = image
+        kebab.rect = kebab.image.get_rect()
+        kebab.rect.x = x
+        kebab.rect.y = y
+        kebab.clicked = False
 
+    def draw(kebab):
+        action = False
 
+        pos = pygame.mouse.get_pos()
+
+        if kebab.rect.collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1 and kebab.clicked == False:
+                action = True
+                kebab.clicked = True
+
+        if pygame.mouse.get_pressed()[0] == 0:
+            kebab.clicked = False
+
+        screen.blit(kebab.image, kebab.rect)
+
+        return action
 
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
 x1 = 400
