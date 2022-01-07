@@ -3,22 +3,32 @@ import random
 
 
 pygame.init()
-pygame.display.set_caption('Båtspel')
+
+clock = pygame.time.Clock()
+fps = 60
+
 screen_width = 700
 screen_height = 700
-screen = pygame.display.set_mode((screen_width, screen_height))
-clock = pygame.time.Clock()
 
-background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption('Båtspel')
+
+#spel variabler
+game_over = 0
+main_menu = True
 x1 = 400
 y1 = 100
 x2 = 80
 y2 = 80
 
+#bilder
+background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
+start_image = pygame.image.load(r'images\pixelart_logs_3.png')
+exit_image = pygame.image.load(r'gymnasiearbete2d.png')
 
-class Button():
+class start_button():
     def __init__(kebab, x, y, image):
-        kebab.image = image
+        kebab.image = start_image
         kebab.rect = kebab.image.get_rect()
         kebab.rect.x = x
         kebab.rect.y = y
@@ -40,6 +50,8 @@ class Button():
         screen.blit(kebab.image, kebab.rect)
 
         return action
+
+
 
 class Obstacle():
         def __init__(Kam, x, y):
@@ -116,7 +128,39 @@ class Player():
 
             screen.blit(self.image, self.rect)
 
+
+class exit_button():
+    def __init__(shwarma, x, y, image):
+        shwarma.image = exit_image
+        shwarma.rect = shwarma.image.get_rect()
+        shwarma.rect.x = x
+        shwarma.rect.y = y
+        shwarma.clicked = False
+
+    def draw(shwarma):
+        action = False
+
+        pos = pygame.mouse.get_pos()
+
+        if shwarma.rect.collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1 and shwarma.clicked == False:
+                action = True
+                shwarma.clicked = True
+
+        if pygame.mouse.get_pressed()[0] == 0:
+            shwarma.clicked = False
+
+        screen.blit(shwarma.image, shwarma.rect)
+
+        return action
+
+
 Player = Player(x1, y1)
+
+
+start = start_button(screen_width // 2, screen_height // 2, start_image)
+exit = exit_button(screen_width // 2 -200, screen_height // 2 + 100, exit_image)
+
 
 run = True
 while run:
@@ -124,10 +168,21 @@ while run:
             # Setting the framerate to 60fps
     clock.tick(60)
 
-            # Checking if player is colliding
-            # with platform or not using the
-            # colliderect() method.
-            # It will return a boolean value
+    if main_menu == True:
+        if exit_button.draw():
+            run = False
+        if start_button.draw():
+            main_menu = False
+
+
+
+
+
+
+# Checking if player is colliding
+# with platform or not using the
+# colliderect() method.
+# It will return a boolean value
     collide = pygame.Rect.colliderect(Player.rect, Obstacle.rect)
 
             # If the objects are colliding
@@ -137,9 +192,9 @@ while run:
         pygame.quit()
 
             # Updating the display surface
+
     screen.blit(background, (0, 0))
     Obstacle.update()
-
     Player.update()
     pygame.display.update()
 
