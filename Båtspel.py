@@ -23,35 +23,6 @@ y2 = 80
 
 #bilder
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
-start_image = pygame.image.load(r'images\pixelart_logs_3.png')
-exit_image = pygame.image.load(r'gymnasiearbete2d.png')
-
-class start_button():
-    def __init__(kebab, x, y, image):
-        kebab.image = start_image
-        kebab.rect = kebab.image.get_rect()
-        kebab.rect.x = x
-        kebab.rect.y = y
-        kebab.clicked = False
-
-    def draw(kebab):
-        action = False
-
-        pos = pygame.mouse.get_pos()
-
-        if kebab.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and kebab.clicked == False:
-                action = True
-                kebab.clicked = True
-
-        if pygame.mouse.get_pressed()[0] == 0:
-            kebab.clicked = False
-
-        screen.blit(kebab.image, kebab.rect)
-
-        return action
-
-
 
 class Obstacle():
         def __init__(Kam, x, y):
@@ -128,38 +99,9 @@ class Player():
 
             screen.blit(self.image, self.rect)
 
-
-class exit_button():
-    def __init__(shwarma, x, y, image):
-        shwarma.image = exit_image
-        shwarma.rect = shwarma.image.get_rect()
-        shwarma.rect.x = x
-        shwarma.rect.y = y
-        shwarma.clicked = False
-
-    def draw(shwarma):
-        action = False
-
-        pos = pygame.mouse.get_pos()
-
-        if shwarma.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and shwarma.clicked == False:
-                action = True
-                shwarma.clicked = True
-
-        if pygame.mouse.get_pressed()[0] == 0:
-            shwarma.clicked = False
-
-        screen.blit(shwarma.image, shwarma.rect)
-
-        return action
-
-
 Player = Player(x1, y1)
 
 
-start = start_button(screen_width // 2, screen_height // 2, start_image)
-exit = exit_button(screen_width // 2 -200, screen_height // 2 + 100, exit_image)
 
 
 run = True
@@ -167,17 +109,6 @@ while run:
 
             # Setting the framerate to 60fps
     clock.tick(60)
-
-    if main_menu == True:
-        if exit_button.draw():
-            run = False
-        if start_button.draw():
-            main_menu = False
-
-
-
-
-
 
 # Checking if player is colliding
 # with platform or not using the
