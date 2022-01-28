@@ -1,7 +1,6 @@
 import pygame
 import random
 
-
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -13,6 +12,7 @@ screen_height = 700
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Båtspel')
 
+
 #spel variabler
 game_over = 0
 main_menu = True
@@ -20,6 +20,7 @@ x1 = 400
 y1 = 100
 x2 = 80
 y2 = 80
+
 
 #bilder
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
@@ -53,8 +54,6 @@ class Obstacle():
 
 
 Obstacle = Obstacle(x2, y2)
-
-Obstacle.update()
 
 class Player():
         def __init__(self, x, y):
@@ -101,19 +100,12 @@ class Player():
 
 Player = Player(x1, y1)
 
-
-
-
 run = True
 while run:
 
             # Setting the framerate to 60fps
-    clock.tick(60)
+    clock.tick(fps)
 
-# Checking if player is colliding
-# with platform or not using the
-# colliderect() method.
-# It will return a boolean value
     collide = pygame.Rect.colliderect(Player.rect, Obstacle.rect)
 
             # If the objects are colliding
