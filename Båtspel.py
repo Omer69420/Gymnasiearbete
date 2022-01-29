@@ -15,7 +15,6 @@ pygame.display.set_caption('Båtspel')
 
 #spel variabler
 game_over = 0
-main_menu = True
 x1 = 400
 y1 = 100
 x2 = 80
@@ -24,6 +23,22 @@ y2 = 80
 
 #bilder
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
+
+class Main():
+
+    main_menu = True
+    while main_menu:
+        def __init__(Men, x, y):
+            kamel = pygame.image.load(r'images/pixelart_logs_2.png')
+            Men.image = pygame.transform.scale(kamel, (40, 70))
+            Men.rect = Men.image.get_rect()
+            Men.rect.x = x
+            Men.rect.y = y
+
+        def update(Men):
+
+            screen.blit(Men.image, Men.rect)
+
 
 class Obstacle():
         def __init__(Kam, x, y):
@@ -100,8 +115,19 @@ class Player():
 
 Player = Player(x1, y1)
 
-run = True
+
+run = False
+main_menu = False
+if main_menu == True:
+    Main.update()
+
+
+if main_menu == False:
+    run = True
+
+
 while run:
+
 
             # Setting the framerate to 60fps
     clock.tick(fps)
