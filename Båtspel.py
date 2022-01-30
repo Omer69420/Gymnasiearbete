@@ -26,19 +26,18 @@ background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x10
 
 class Main():
 
-    main_menu = True
-    while main_menu:
-        def __init__(Men, x, y):
-            kamel = pygame.image.load(r'images/pixelart_logs_2.png')
-            Men.image = pygame.transform.scale(kamel, (40, 70))
-            Men.rect = Men.image.get_rect()
-            Men.rect.x = x
-            Men.rect.y = y
+        def __init__(men, x, y):
+            start_button = pygame.image.load(r'images/startbutton_pixelart.png')
+            men.image = pygame.transform.scale(start_button , (100, 100))
+            men.rect = men.image.get_rect()
+            men.rect.x = x
+            men.rect.y = y
 
-        def update(Men):
+        def update(men):
 
-            screen.blit(Men.image, Men.rect)
+            screen.blit(men.image, men.rect)
 
+Main = Main(350, 350)
 
 class Obstacle():
         def __init__(Kam, x, y):
@@ -116,16 +115,31 @@ class Player():
 Player = Player(x1, y1)
 
 
-run = False
 main_menu = False
-if main_menu == True:
-    Main.update()
 
 
 if main_menu == False:
     run = True
 
+if main_menu == True:
+    Menu = True
 
+Menu = True
+while Menu:
+
+    Main.update()
+
+    screen.blit(background, (0, 0))
+    Main.update()
+    pygame.display.update()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            main_menu = False
+
+pygame.quit()
+
+run = False
 while run:
 
 
