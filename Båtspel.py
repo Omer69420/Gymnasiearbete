@@ -34,6 +34,8 @@ class Main():
             men.rect.y = y
 
         def update(men):
+            start_key = pygame.key.get_pressed()
+            if start_key[pygame.K_SPACE]:
 
             screen.blit(men.image, men.rect)
 
@@ -114,52 +116,51 @@ class Player():
 
 Player = Player(x1, y1)
 
-
-main_menu = False
-
-
-if main_menu == False:
-    run = True
-
-if main_menu == True:
-    Menu = True
-
+run = False
 Menu = True
-while Menu:
 
-    Main.update()
+
+while Menu:
 
     screen.blit(background, (0, 0))
     Main.update()
     pygame.display.update()
 
     for event in pygame.event.get():
+        if event.type == pygame.key.get_pressed(Main)
+            Menu == False:
+            run = True
+
+
+
+
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            main_menu = False
+            Menu = False
 
 pygame.quit()
 
-run = False
+
 while run:
 
 
             # Setting the framerate to 60fps
     clock.tick(fps)
 
-    collide = pygame.Rect.colliderect(Player.rect, Obstacle.rect)
-
-            # If the objects are colliding
-            # then changing the y coordinate
-    if collide:
-        Obstacle.rect.bottom = Player.rect.top
-        pygame.quit()
-
-            # Updating the display surface
-
+            # Updating the display surfac
     screen.blit(background, (0, 0))
     Obstacle.update()
     Player.update()
     pygame.display.update()
+
+
+    collide = pygame.Rect.colliderect(Player.rect, Obstacle.rect)
+
+# If the objects are colliding
+# then changing the y coordinate
+    if collide:
+        Obstacle.rect.bottom = Player.rect.top
+        pygame.quit()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
