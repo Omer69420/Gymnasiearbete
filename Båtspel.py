@@ -38,11 +38,9 @@ class Main():
             men.rect.y = y
 
         def update(men):
-            key = pygame.key.get_pressed()
-            if key[pygame.K_RIGHT]:
+            start_key = pygame.key.get_pressed()
+            if start_key[pygame.K_SPACE]:
                 run = True
-
-
 
             screen.blit(men.image, men.rect)
 
@@ -131,19 +129,16 @@ while Menu:
     Main.update()
     pygame.display.update()
 
-    #for event in pygame.event.get():
-        #if event.type == pygame.key.get_pressed(Main):
-            #Menu == False
-            #run = True
-
-
+    for event in pygame.event.get(Main.update()):
+        if event.type == pygame.key.get_pressed():
+            Menu = False
+            run = True
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             Menu = False
 
 pygame.quit()
-
 
 while run:
 
