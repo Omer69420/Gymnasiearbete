@@ -21,6 +21,10 @@ x2 = 80
 y2 = 80
 
 
+run = False
+Menu = True
+
+
 #bilder
 background = pygame.image.load(r'images\baby-blue-color-solid-background-1920x1080.png')
 
@@ -28,14 +32,17 @@ class Main():
 
         def __init__(men, x, y):
             start_button = pygame.image.load(r'images/startbutton_pixelart.png')
-            men.image = pygame.transform.scale(start_button , (100, 100))
+            men.image = pygame.transform.scale(start_button, (100, 100))
             men.rect = men.image.get_rect()
             men.rect.x = x
             men.rect.y = y
 
         def update(men):
-            start_key = pygame.key.get_pressed()
-            if start_key[pygame.K_SPACE]:
+            key = pygame.key.get_pressed()
+            if key[pygame.K_RIGHT]:
+                run = True
+
+
 
             screen.blit(men.image, men.rect)
 
@@ -94,7 +101,7 @@ class Player():
                 dy += 7
             if key[pygame.K_LEFT]:
                 dx -= 7
-            if key[pygame.K_RIGHT]:
+            #if key[pygame.K_RIGHT]:
                 dx += 7
 
             self.rect.x += dx
@@ -116,8 +123,6 @@ class Player():
 
 Player = Player(x1, y1)
 
-run = False
-Menu = True
 
 
 while Menu:
@@ -126,11 +131,10 @@ while Menu:
     Main.update()
     pygame.display.update()
 
-    for event in pygame.event.get():
-        if event.type == pygame.key.get_pressed(Main)
-            Menu == False:
-            run = True
-
+    #for event in pygame.event.get():
+        #if event.type == pygame.key.get_pressed(Main):
+            #Menu == False
+            #run = True
 
 
 
